@@ -1,118 +1,93 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./UserDashboard.css";
 
 function UserDashboard() {
+  const navigate = useNavigate();
   const location = useLocation();
-  const [username, setUsername] = useState("Guest"); // Default username
+
+  const [username] = useState(location.state?.username || "Guest User"); // Username from login
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false); // Dropdown visibility
   const [theme, setTheme] = useState("light"); // Default theme
-  const [profileOpen, setProfileOpen] = useState(false); // Profile dropdown state
-  const [marks, setMarks] = useState({
-    math: "",
-    physics: "",
-    chemistry: "",
-  });
-  const [cutoff, setCutoff] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0); // Index for sliding quotes/objectives
 
-  // Set username from login
+  // Objectives and Quotes
+  const objectives = [
+    "Empowering students to make informed decisions.",
+    "Simplifying college admissions with precision tools.",
+    "Connecting learners with trending career paths.",
+  ];
+
+  const quotes = [
+    "Dream big and dare to fail.",
+    "The future depends on what you do today.",
+    "Success is not the key to happiness. Happiness is the key to success.",
+  ];
+
+  // Combine objectives and quotes for sliding effect
+  const rotatingTexts = [...objectives, ...quotes];
+
+  // Automatic Slider
   useEffect(() => {
-    if (location.state && location.state.username) {
-      setUsername(location.state.username);
-    }
-  }, [location.state]);
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % rotatingTexts.length);
+    }, 4000); // Change text every 4 seconds
+    return () => clearInterval(interval); // Cleanup interval on unmount
+  }, [rotatingTexts]);
 
-  // Handle theme toggle
+  // Handle Theme Toggle
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
 
-  // Handle cutoff calculation
-  const calculateCutoff = () => {
-    const { math, physics, chemistry } = marks;
-    if (math && physics && chemistry) {
-      const cutoffValue =
-        parseFloat(math) + parseFloat(physics) / 2 + parseFloat(chemistry) / 2;
-      setCutoff(cutoffValue.toFixed(2));
-    } else {
-      setCutoff("Please enter all marks!");
-    }
-  };
-
-  // Handle input change for marks
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setMarks({ ...marks, [name]: value });
+  // Handle Logout
+  const handleLogout = () => {
+    navigate("/"); // Redirect to login page
   };
 
   return (
     <div className={`dashboard-container ${theme}`}>
-      {/* Profile Button */}
-      <div className="profile-button-wrapper">
+      {/* Left: Settings Section */}
+      <div className="settings-section">
         <div
-          className="profile-button"
-          onClick={() => setProfileOpen(!profileOpen)}
+          className="profile-button-wrapper"
+          onClick={() => setIsSettingsOpen(!isSettingsOpen)} // Toggle dropdown
         >
-          ⚙
-        </div>
-        {profileOpen && (
-          <div className="profile-dropdown">
-            <h3>{username}'s Settings</h3>
-            <button onClick={toggleTheme} className="dropdown-button">
-              Toggle {theme === "light" ? "Dark" : "Light"} Theme
-            </button>
-            <button className="dropdown-button">Change Password</button>
-            <button className="dropdown-button">Change Profile Picture</button>
+          <div className="profile-button">
+            {/* Sleek Person Profile Icon */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="white"
+              className="profile-icon"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 14.5c3.589 0 6.5-2.911 6.5-6.5S15.589 1.5 12 1.5 5.5 4.411 5.5 8s2.911 6.5 6.5 6.5zm0 2.5c-4.418 0-8 3.582-8 8h16c0-4.418-3.582-8-8-8z"
+              />
+            </svg>
           </div>
-        )}
-      </div>
-
-      {/* Main Content */}
-      <div className="content">
-        <div className="profile-card">
-          <h2>Welcome, {username}</h2>
-        </div>
-
-        <div className="calculator-card">
-          <h3>TNEA Cutoff Calculator</h3>
-          <div className="input-group">
-            <label>Mathematics:</label>
-            <input
-              type="number"
-              name="math"
-              value={marks.math}
-              onChange={handleInputChange}
-              placeholder="Enter Math marks"
-            />
-          </div>
-          <div className="input-group">
-            <label>Physics:</label>
-            <input
-              type="number"
-              name="physics"
-              value={marks.physics}
-              onChange={handleInputChange}
-              placeholder="Enter Physics marks"
-            />
-          </div>
-          <div className="input-group">
-            <label>Chemistry:</label>
-            <input
-              type="number"
-              name="chemistry"
-              value={marks.chemistry}
-              onChange={handleInputChange}
-              placeholder="Enter Chemistry marks"
-            />
-          </div>
-          <button onClick={calculateCutoff} className="calculate-button">
-            Calculate Cutoff
-          </button>
-
-          {cutoff && (
-            <div className="cutoff-result">
-              <h4>Your TNEA Cutoff is: {cutoff}</h4>
+          {isSettingsOpen && (
+            <div className="settings-dropdown">
+              <h4 className="settings-title">{username}</h4>
+              <button className="dropdown-button" onClick={toggleTheme}>
+                {theme === "light" ? "Dark Theme" : "Light Theme"}
+              </button>
+              <button className="dropdown-button logout-button" onClick={handleLogout}>
+                Logout
+              </button>
             </div>
           )}
+        </div>
+      </div>
+
+      {/* Center: Rotating Objectives and Quotes */}
+      <div className="content-section">
+        <div className="rotating-text">
+          <p className="styled-text">{rotatingTexts[currentIndex]}</p>
         </div>
       </div>
     </div>

@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 
 function LoginPage() {
-  const [username, setUsername] = useState(""); // Store the username
+  const [username, setUsername] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = () => {
     if (!username.trim()) {
-      alert("Please enter a username!");
+      alert("Please enter your username!");
       return;
     }
     navigate("/dashboard", { state: { username } });
@@ -17,7 +17,7 @@ function LoginPage() {
   return (
     <div className="login-container">
       <div className="login-card">
-        <h1 className="app-title">College Guidance App</h1>
+        <h1 className="app-title">Welcome Back</h1>
         <input
           type="text"
           placeholder="Enter Username"
