@@ -1,52 +1,62 @@
 body {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    background: linear-gradient(to bottom right, #4caf50, #81c784);
-  }
-  
-  .login-container {
-    display: flex;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .login-card {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .app-title {
-    font-size: 28px;
-    color: #25603b;
-    margin-bottom: 20px;
-  }
-  
-  .login-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  .login-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #4caf50;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .login-button:hover {
-    background-color: #43a047;
-  }
-  
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to bottom right, #4caf50, #81c784); /* Green theme */
+}
+
+.login-container {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.app-title {
+  font-size: 28px;
+  color: #25603b;
+  margin-bottom: 20px;
+}
+
+.login-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.admin-checkbox {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.admin-checkbox input {
+  margin-right: 10px;
+}
+
+.login-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #43a047;
+}

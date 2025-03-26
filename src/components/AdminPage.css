@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background-color: #e8f5e9; /* Light green */
+    color: #25603b;
+  }
+  
+  .admin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    padding: 40px;
+  }
+  
+  .admin-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #25603b;
+    margin-bottom: 30px;
+  }
+  
+  .upload-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .upload-label {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .file-input {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .upload-button {
+    padding: 12px 20px;
+    background-color: #4caf50;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .upload-button:hover {
+    background-color: #43a047;
+  }
+  

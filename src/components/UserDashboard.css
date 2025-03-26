@@ -1,133 +1,195 @@
 /* General Styling */
 body {
-    margin: 0;
-    font-family: "Poppins", sans-serif; /* Clean font for general text */
+  margin: 0;
+  font-family: "Poppins", sans-serif; /* Clean and modern font */
+}
+
+.dashboard-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr; /* Layout with left, center, right sections */
+  height: 100vh;
+  gap: 20px;
+  padding: 20px;
+}
+
+.dashboard-container.light {
+  background-color: #e8f5e9; /* Light green for light theme */
+  color: #25603b; /* Dark green text */
+}
+
+.dashboard-container.dark {
+  background-color: #000000; /* Black background for dark theme */
+  color: #ffffff; /* White text for dark theme */
+}
+
+/* Settings Section */
+.settings-section {
+  align-self: flex-start; /* Place at the top-left corner */
+  position: relative;
+}
+
+.profile-button-wrapper {
+  cursor: pointer;
+}
+
+.profile-button {
+  width: 45px; /* Circular button size */
+  height: 45px;
+  background-color: #4caf50; /* Green for light theme */
+  color: white;
+  border-radius: 50%; /* Circular shape */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease, background-color 0.3s ease; /* Hover effects */
+}
+
+.profile-button:hover {
+  background-color: #43a047; /* Slightly darker green on hover */
+  transform: scale(1.1); /* Slight zoom */
+}
+
+.profile-icon {
+  width: 25px; /* Size of the icon inside the button */
+  height: 25px;
+}
+
+.settings-dropdown {
+  position: absolute;
+  top: 60px; /* Dropdown opens below the button */
+  left: 0;
+  background-color: white;
+  color: #25603b; /* Green text */
+  width: 250px; /* Dropdown width */
+  border-radius: 10px;
+  padding: 20px; /* Inner padding */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Subtle shadow for the dropdown */
+}
+
+.settings-dropdown h4 {
+  font-size: 18px; /* Medium font size */
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.dropdown-button {
+  width: 100%; /* Full width for buttons */
+  padding: 12px; /* Inner padding */
+  margin: 8px 0;
+  background-color: #66bb6a; /* Green background */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px; /* Medium font size */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth hover */
+}
+
+.dropdown-button:hover {
+  background-color: #43a047; /* Darker green on hover */
+}
+
+.logout-button {
+  background-color: #e53935; /* Red for logout */
+}
+
+.logout-button:hover {
+  background-color: #d32f2f; /* Darker red on hover */
+}
+
+/* Center Content Section */
+.content-section {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Center content expands fully */
+  text-align: center;
+}
+
+.rotating-text {
+  font-family: "Dancing Script", cursive; /* Stylish cursive font for motivational text */
+  font-size: 32px; /* Large font size for visibility */
+  font-weight: bold;
+  animation: fadeInOutSmooth 4s infinite; /* Smooth fade-in and fade-out animation */
+  color: #1b5e20; /* Deep green text color */
+}
+
+@keyframes fadeInOutSmooth {
+  0% {
+    opacity: 0;
+    transform: translateY(20px); /* Start below */
+    animation-timing-function: ease-in; /* Ease-in effect for entering */
   }
-  
-  .dashboard-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    padding: 20px;
+  10%, 90% {
+    opacity: 1;
+    transform: translateY(0); /* Stay in place */
+    animation-timing-function: ease-out; /* Ease-out effect for leaving */
   }
-  
-  .dashboard-container.light {
-    background-color: #e8f5e9; /* Light green for light theme */
-    color: #25603b; /* Dark green text */
+  100% {
+    opacity: 0;
+    transform: translateY(-20px); /* Disappear upwards */
   }
-  
-  .dashboard-container.dark {
-    background-color: #000000; /* Black for dark theme */
-    color: #ffffff;
-  }
-  
-  /* Settings Section */
-  .settings-section {
-    align-self: flex-start;
-    position: relative;
-  }
-  
-  .profile-button-wrapper {
-    cursor: pointer;
-    display: inline-block;
-  }
-  
-  .profile-button {
-    width: 45px; /* Reduced size for icon */
-    height: 45px;
-    background-color: #4caf50; /* Green color for light theme */
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-  }
-  
-  .profile-button:hover {
-    background-color: #43a047;
-    transform: scale(1.1); /* Slight hover zoom effect */
-  }
-  
-  .profile-icon {
-    width: 25px; /* Sleek profile icon size */
-    height: 25px;
-  }
-  
-  .settings-dropdown {
-    position: absolute;
-    top: 60px;
-    left: 0;
-    background-color: white;
-    color: #25603b;
-    width: 250px;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  
-  .settings-dropdown h4 {
-    font-size: 18px; /* Medium font size for username */
-    font-weight: bold;
-    margin-bottom: 15px;
-  }
-  
-  .dropdown-button {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    background-color: #66bb6a; /* Green button */
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .dropdown-button:hover {
-    background-color: #43a047;
-  }
-  
-  .logout-button {
-    background-color: #e53935; /* Red for logout */
-  }
-  
-  .logout-button:hover {
-    background-color: #d32f2f;
-  }
-  
-  /* Center Content Section */
-  .content-section {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    text-align: center;
-  }
-  
-  .rotating-text {
-    font-family: "Dancing Script", cursive; /* Stylish cursive font for rotating text */
-    font-size: 28px; /* Medium font size */
-    font-weight: bold;
-    animation: fadeInOut 4s infinite;
-    color: #1b5e20; /* Deep green color for text */
-  }
-  
-  @keyframes fadeInOut {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    10%, 90% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    100% {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-  }
-  
+}
+
+/* Features Section */
+.feature-section {
+  position: absolute; /* Fix position */
+  top: 20px; /* Place at the top */
+  right: 20px; /* Align at the top-right corner */
+}
+
+.feature-button-wrapper {
+  cursor: pointer;
+}
+
+.feature-button {
+  width: 45px; /* Same size as settings button */
+  height: 45px;
+  background-color: #4caf50; /* Green button */
+  color: white;
+  border-radius: 50%; /* Circular shape */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease, background-color 0.3s ease; /* Hover effects */
+}
+
+.feature-button:hover {
+  background-color: #43a047; /* Darker green on hover */
+  transform: scale(1.1); /* Slight zoom on hover */
+}
+
+.book-icon {
+  width: 25px; /* Icon size */
+  height: 25px; /* Book icon for features */
+}
+
+.features-dropdown {
+  position: absolute;
+  top: 60px; /* Dropdown opens below the button */
+  right: 0; /* Align dropdown to the left of the button */
+  background-color: white;
+  color: #25603b; /* Green text for dropdown options */
+  width: 250px; /* Dropdown width */
+  border-radius: 10px;
+  padding: 20px; /* Inner padding */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.dropdown-feature {
+  width: 100%; /* Full width for dropdown buttons */
+  padding: 12px; /* Spacing for each dropdown option */
+  margin: 8px 0;
+  background-color: #66bb6a; /* Green background */
+  color: white;
+  border: none;
+  border-radius: 6px; /* Rounded corners */
+  font-size: 16px; /* Medium font size */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+.dropdown-feature:hover {
+  background-color: #43a047; /* Darker green on hover */
+}
